@@ -12,6 +12,13 @@ const allCategories = () => {
 }
 
 
+// all categories called
+
+const allCategoryWiseTree = (category) => {
+    fetch(`https://openapi.programming-hero.com/api/category/${category}`).then((res) => res.json()).then((json) => showAllPlant(json.plants))
+}
+
+
 // function for show all categories button
 
 const showAllCategories = (categories) => {
@@ -29,11 +36,16 @@ const showAllCategories = (categories) => {
         const newCategory = document.createElement('div');
 
         newCategory.innerHTML = `
-        <div class="bg-[#15803D] text-white text-[12px] rounded-[4px] px-2 py-1 hover:cursor-pointer">${category.category_name}</div>
+        <div id="${category.id}" class="bg-[#15803D] text-white text-[12px] rounded-[4px] px-2 py-1 hover:cursor-pointer">${category.category_name}</div>
         `;
 
         // append new category to category container
         categoryBtnContainer.append(newCategory);
+
+        // function for load category wise card
+        newCategory.addEventListener('click', () => {
+            allCategoryWiseTree(`${category.id}`)
+        });
     }
 }
 
