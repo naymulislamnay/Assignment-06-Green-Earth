@@ -84,6 +84,10 @@ const showAllPlant = (plants) => {
     // make sure the container is empty
     cardContainer.innerHTML = "";
 
+
+    // add to cart
+    const addToCartContainer = document.getElementById('add-to-cart-container');
+
     // create loop for every card
     for (let plant of plants) {
 
@@ -115,8 +119,6 @@ const showAllPlant = (plants) => {
         cardContainer.append(treeCard);
 
         // add to cart
-        const addToCartContainer = document.getElementById('add-to-cart-container');
-
         const addToCartBtns = document.getElementById(`plant-${plant.id}`);
 
 
@@ -147,7 +149,7 @@ const showAllPlant = (plants) => {
                                 <h3 class="text-[10px] font-bold">${plant.name}</h3>
                                 <p class="text-11px text-[#474f5a]">৳<span>${plant.price}</span> × <span class= "quantity">1</span></p>
                             </div>
-                            <div class="text-2xl text-[#474f5a]">
+                            <div class="text-2xl text-[#474f5a] hover:cursor-pointer cart-del-btn">
                                 ×
                             </div>
                         </div>
@@ -167,3 +169,16 @@ const showAllPlant = (plants) => {
 }
 
 allPlants()
+
+
+// for (let cartTree of cartTrees) {
+//     // cart delete button
+
+//     const cartDelBtn = cartTree.querySelector('.cart-del-btn')
+
+//     cartDelBtn.addEventListener('click', () => {
+//         cartTree.remove();
+
+//         console.log(`del btn Clicked`, cartTree)
+//     })
+// }
