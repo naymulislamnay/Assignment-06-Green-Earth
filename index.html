@@ -26,44 +26,118 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
-<body class="max-w-[1280px] mx-auto">
-    <header>
-        <!-- navbar start from here -->
-        <nav class="bg-[#15803D] text-white flex justify-between items-center py-4 px-10">
-            <h2>Green Earth</h2>
-            <div class="flex gap-4">
-                <p>About</p>
-                <p>Gallery</p>
-                <P>Plant a Tree</P>
+<body class="bg-[#f0fdf4] h-full">
+    <div class="max-w-[1280px] mx-auto">
+        <header>
+            <!-- navbar start from here -->
+            <nav class="bg-[#15803D] text-white flex justify-between items-center py-4 px-10">
+                <h2>Green Earth</h2>
+                <div class="flex gap-4">
+                    <p>About</p>
+                    <p>Gallery</p>
+                    <P>Plant a Tree</P>
+                </div>
+                <button class="btn btn-warning text-[#15803D] font-semibold rounded-full bg-[#FACC15]">Plant a
+                    Tree</button>
+            </nav>
+        </header>
+
+        <main>
+            <!-- banner start from here -->
+            <div class="bg-[#CFF0DC] flex items-center justify-between">
+                <img class="max-w-[360px]" src="./assets/hero-leaf1.png" alt="">
+                <div class="text-center">
+                    <h1 class="text-[32px] font-bold">
+                        Plant a Tree, Grow a Future
+                    </h1>
+                    <p class="max-w-[385px] text-[#474f5a] text-[12px]">
+                        Join our mission to plant 1 million trees and make the Earth greener for future
+                        generations.
+                    </p>
+                    <button
+                        class="btn text-[12px] btn-warning text-[#15803D] font-semibold rounded-full bg-[#FACC15] mt-4">Get
+                        Involved</button>
+                </div>
+                <img class="max-w-[360px]" src="./assets/hero-leaf2.png" alt="">
             </div>
-            <button class="btn btn-warning text-[#15803D] font-semibold rounded-full bg-[#FACC15]">Plant a Tree</button>
-        </nav>
-    </header>
 
-    <main>
-        <!-- banner start from here -->
-        <div class="bg-[#CFF0DC] flex items-center justify-between">
-            <img class="max-w-[360px]" src="./assets/hero-leaf1.png" alt="">
-            <div class="text-center">
-                <h1 class="text-[32px] font-bold">
-                    Plant a Tree, Grow a Future
-                </h1>
-                <p class="max-w-[385px] text-[#474f5a] text-[12px]">
-                    Join our mission to plant 1 million trees and make the Earth greener for future
-                    generations.
-                </p>
-                <button
-                    class="btn text-[12px] btn-warning text-[#15803D] font-semibold rounded-full bg-[#FACC15] mt-4">Get
-                    Involved</button>
+
+            <!-- main section -->
+            <div class="text-center mt-[40px] text-[22px] font-semibold">
+                Choose Your Trees
             </div>
-            <img class="max-w-[360px]" src="./assets/hero-leaf2.png" alt="">
-        </div>
 
-    </main>
+            <div class="flex gap-5 mt-5">
+                <!-- left Sidebar (Categories) -->
+                <div class="border border-red-600 w-1/5">
+                    left
+                </div>
 
-    <footer>
+                <!-- main content (Cards) -->
+                <div class="border border-black w-3/5">
+                    main
+                </div>
 
-    </footer>
+                <!-- right sidebar (cart section) -->
+                <div class=" border border-green-600 w-1/5">
+                    right
+                </div>
+            </div>
+
+
+            <!-- About Campaign -->
+            <div class="max-w-[720px] mx-auto">
+                <h2 class="text-center text-[22px] font-semibold mt-10">About the Campaign</h2>
+                <div class="flex items-center mt-5 gap-5">
+                    <img class="max-w-[350px]" src="./assets/about.png" alt="">
+                    <div class="text-[12px]">
+                        <p>
+                            Green Earth is a global tree plantation initiative dedicated to fighting climate change.
+                            Since our start, we’ve planted over 500,000 trees worldwide. By joining our campaign, you
+                            help restore forests, create habitats for wildlife, and combat global warming.
+                        </p>
+
+                        <ul class="list-disc pl-5 mt-3">
+                            <li>Restoration of natural habitats</li>
+                            <li>Improvement of air quality</li>
+                            <li>Support for local communities</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- out Impact section -->
+
+            <div class="bg-[#CFF0DC] mt-10 py-10 px-[90px]">
+                <h2 class="text-center text-[22px] font-semibold">Our Impact</h2>
+
+                <div class="flex justify-between gap-8 mt-5">
+                    <!-- card-01 -->
+                    <div class="bg-white rounded-[8px] text-center p-6 w-full">
+                        <h2 class="text-[#15803D] font-semibold text-[22px]">500K+</h2>
+                        <p class="text-[12px] text-[#474f5a]">Trees Planted</p>
+                    </div>
+
+                    <!-- card-02 -->
+                    <div class="bg-white rounded-[8px] text-center p-6 w-full">
+                        <h2 class="text-[#15803D] font-semibold text-[22px]">500K+</h2>
+                        <p class="text-[12px] text-[#474f5a]">Trees Planted</p>
+                    </div>
+
+                    <!-- card-03 -->
+                    <div class="bg-white rounded-[8px] text-center p-6 w-full">
+                        <h2 class="text-[#15803D] font-semibold text-[22px]">500K+</h2>
+                        <p class="text-[12px] text-[#474f5a]">Trees Planted</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+
+        </footer>
+    </div>
 
     <!-- JavaScript file link -->
     <script src="./scripts/script.js"></script>
