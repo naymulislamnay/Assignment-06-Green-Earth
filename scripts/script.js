@@ -29,6 +29,9 @@ const showAllCategories = (categories) => {
     // make sure the container is empty
     categoryBtnContainer.innerHTML = "";
 
+
+
+
     // loop for all category btn
     for (let category of categories) {
 
@@ -36,7 +39,7 @@ const showAllCategories = (categories) => {
         const newCategory = document.createElement('div');
 
         newCategory.innerHTML = `
-        <div id="${category.id}" class="bg-[#15803D] text-white text-[12px] rounded-[4px] px-2 py-1 hover:cursor-pointer">${category.category_name}</div>
+        <div id="${category.id}" class="text-[12px] rounded-[4px] px-2 py-1 hover:cursor-pointer category-btns">${category.category_name}</div>
         `;
 
         // append new category to category container
@@ -44,12 +47,31 @@ const showAllCategories = (categories) => {
 
         // function for load category wise card
         newCategory.addEventListener('click', () => {
-            allCategoryWiseTree(`${category.id}`)
+
+            const allCategoryBtns = document.getElementsByClassName('category-btns')
+
+            for (let categoryBtn of allCategoryBtns) {
+                // remove active classes
+                categoryBtn.classList.remove('bg-[#15803D]', 'text-white');
+                categoryBtn.classList.add('text-black');
+            }
+
+
+            document.getElementById(`${category.id}`).classList.add('bg-[#15803D]', 'text-white');
+            document.getElementById(`${category.id}`).classList.remove('text-black');
+
+
+            allCategoryWiseTree(`${category.id}`);
         });
     }
 }
 
 allCategories()
+
+
+// total cost 
+
+let totalCost = Number(document.getElementById('total-cost').innerText);
 
 
 // function for show all plant cards
@@ -82,7 +104,7 @@ const showAllPlant = (plants) => {
                     <p class="font-bold">৳<span>${plant.price}</span>
                     </p>
                 </div>
-                <button class="text-[12px] py-1.5 hover:cursor-pointer font-semibold rounded-full bg-[#15803D] w-full text-white mt-2">Add to Cart
+                <button id= "plant-${plant.id}" class="text-[12px] py-1.5 hover:cursor-pointer font-semibold rounded-full bg-[#15803D] w-full text-white mt-2">Add to Cart
                 </button>
             </div>
         </div>
@@ -91,6 +113,56 @@ const showAllPlant = (plants) => {
 
         // append the new card to the container
         cardContainer.append(treeCard);
+
+        // add to cart
+        const addToCartContainer = document.getElementById('add-to-cart-container');
+
+        const addToCartBtns = document.getElementById(`plant-${plant.id}`);
+
+
+        addToCartBtns.addEventListener('click', () => {
+
+            // check if item already exist
+            let existingTree = Array.from(addToCartContainer.children).find(tree => {
+                return tree.querySelector("h3").innerText === plant.name;
+            });
+
+            if (existingTree) {
+                let itemQuantity = existingTree.querySelector('.quantity');
+
+                let itQuan = Number(itemQuantity.innerText);
+
+                itemQuantity.innerText = itQuan + 1;
+
+                totalCost += Number(plant.price);
+            }
+
+            else {
+                // create new cart
+                const newCart = document.createElement('div');
+
+                newCart.innerHTML = `
+                <div class="flex items-center justify-between bg-[#F0FDF4] rounded-[8px] px-2 py-1">
+                            <div>
+                                <h3 class="text-[10px] font-bold">${plant.name}</h3>
+                                <p class="text-11px text-[#474f5a]">৳<span>${plant.price}</span> × <span class= "quantity">1</span></p>
+                            </div>
+                            <div class="text-2xl text-[#474f5a]">
+                                ×
+                            </div>
+                        </div>
+                `;
+
+                addToCartContainer.append(newCart);
+
+
+                // total cost update
+                totalCost += Number(plant.price);
+            }
+
+            document.getElementById('total-cost').innerText = totalCost;
+
+        })
     }
 }
 
