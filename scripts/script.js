@@ -5,6 +5,39 @@ const allPlants = () => {
 }
 
 
+// all categories called
+
+const allCategories = () => {
+    fetch("https://openapi.programming-hero.com/api/categories").then((res) => res.json()).then((json) => showAllCategories(json.categories))
+}
+
+
+// function for show all categories button
+
+const showAllCategories = (categories) => {
+
+    // categories button container
+    const categoryBtnContainer = document.getElementById("category-btn-container");
+
+    // make sure the container is empty
+    categoryBtnContainer.innerHTML = "";
+
+    // loop for all category btn
+    for (let category of categories) {
+
+        // create new category item
+        const newCategory = document.createElement('div');
+
+        newCategory.innerHTML = `
+        <div class="bg-[#15803D] text-white text-[12px] rounded-[4px] px-2 py-1 hover:cursor-pointer">${category.category_name}</div>
+        `;
+
+        // append new category to category container
+        categoryBtnContainer.append(newCategory);
+    }
+}
+
+allCategories()
 
 
 // function for show all plant cards
