@@ -74,6 +74,16 @@ allCategories()
 let totalCost = Number(document.getElementById('total-cost').innerText);
 
 
+// function to remove cart item
+const removeCartItem = (cartItem, plantPrice) => {
+    const quantity = Number(cartItem.querySelector('.quantity').innerText);
+    totalCost -= plantPrice * quantity;
+    document.getElementById('total-cost').innerText = totalCost;
+
+    cartItem.remove();
+};
+
+
 // function for show all plant cards
 
 const showAllPlant = (plants) => {
@@ -160,6 +170,13 @@ const showAllPlant = (plants) => {
 
                 // total cost update
                 totalCost += Number(plant.price);
+
+                // cart delete and price update
+                const cartDelBtn = newCart.querySelector('.cart-del-btn');
+                cartDelBtn.addEventListener('click', () => {
+                    removeCartItem(newCart, Number(plant.price));
+                });
+
             }
 
             document.getElementById('total-cost').innerText = totalCost;
@@ -169,16 +186,3 @@ const showAllPlant = (plants) => {
 }
 
 allPlants()
-
-
-// for (let cartTree of cartTrees) {
-//     // cart delete button
-
-//     const cartDelBtn = cartTree.querySelector('.cart-del-btn')
-
-//     cartDelBtn.addEventListener('click', () => {
-//         cartTree.remove();
-
-//         console.log(`del btn Clicked`, cartTree)
-//     })
-// }
