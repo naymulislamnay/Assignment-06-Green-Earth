@@ -39,7 +39,7 @@ const showAllCategories = (categories) => {
         const newCategory = document.createElement('div');
 
         newCategory.innerHTML = `
-        <div id="${category.id}" class="text-[12px] rounded-[4px] px-2 py-1 hover:cursor-pointer category-btns">${category.category_name}</div>
+        <div id="${category.id}" class="text-[10px] md:text-[12px] border border-[#15803D] md:border-none rounded-[4px] px-2 py-1 hover:cursor-pointer category-btns">${category.category_name}</div>
         `;
 
         // append new category to category container
@@ -104,21 +104,21 @@ const showAllPlant = (plants) => {
         // create new card for every tree
         const treeCard = document.createElement('div');
         treeCard.innerHTML = `
-        <div class="bg-white rounded-[8px] p-3 h-full flex flex-col justify-between">
+        <div class="bg-white rounded-[8px] p-1 md:p-3 h-full flex flex-col justify-between">
             <div>
                 <img class="rounded-[8px] bg-black aspect-[3/2] w-full" src="${plant.image}" alt="">
-                <button class="text-[12px] font-bold mt-2 hover:cursor-pointer">${plant.name}</button>
-                <p class="text-[10px] mt-1.5">${plant.description}</p>
+                <button id="modal-${plant.name}" class="text-[10px] md:text-[12px] font-bold mt-2 hover:cursor-pointer">${plant.name}</button>
+                <p class="text-[8px] md:text-[10px] mt-1.5 line-clamp-2">${plant.description}</p>
             </div>
 
             <div>
-                <div class="flex justify-between text-[12px] mt-1.5">
+                <div class="flex justify-between items-center text-[8px] md:text-[12px] mt-1.5">
                     <div class="font-semibold bg-[#DCFCE7] rounded-full py-1 px-2 text-[#15803D]">${plant.category}
                     </div>
                     <p class="font-bold">৳<span>${plant.price}</span>
                     </p>
                 </div>
-                <button id= "plant-${plant.id}" class="text-[12px] py-1.5 hover:cursor-pointer font-semibold rounded-full bg-[#15803D] w-full text-white mt-2">Add to Cart
+                <button id= "plant-${plant.id}" class="text-[8px] md:text-[12px] py-1.5 hover:cursor-pointer font-semibold rounded-full bg-[#15803D] w-full text-white mt-2">Add to Cart
                 </button>
             </div>
         </div>
@@ -156,10 +156,10 @@ const showAllPlant = (plants) => {
                 newCart.innerHTML = `
                 <div class="flex items-center justify-between bg-[#F0FDF4] rounded-[8px] px-2 py-1">
                             <div>
-                                <h3 class="text-[10px] font-bold">${plant.name}</h3>
-                                <p class="text-11px text-[#474f5a]">৳<span>${plant.price}</span> × <span class= "quantity">1</span></p>
+                                <h3 class="text-[10px] md:text-[12px] font-bold">${plant.name}</h3>
+                                <p class="text-[11px] md:text-[14px] text-[#474f5a]">৳<span>${plant.price}</span> × <span class= "quantity">1</span></p>
                             </div>
-                            <div class="text-2xl text-[#474f5a] hover:cursor-pointer cart-del-btn">
+                            <div class="text-xl md:text-2xl text-[#474f5a] hover:cursor-pointer cart-del-btn">
                                 ×
                             </div>
                         </div>
@@ -181,6 +181,14 @@ const showAllPlant = (plants) => {
 
             document.getElementById('total-cost').innerText = totalCost;
 
+        })
+
+
+        // modal with tree details
+        const plantNameModal = document.getElementById(`modal-${plant.name}`);
+
+        plantNameModal.addEventListener('click', () => {
+            console.log(`modal clicked: modal-${plant.name}`);
         })
     }
 }
