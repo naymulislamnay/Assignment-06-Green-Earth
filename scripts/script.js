@@ -8,15 +8,22 @@ const allPlants = () => {
 // all categories called
 
 const allCategories = () => {
-    fetch("https://openapi.programming-hero.com/api/categories").then((res) => res.json()).then((json) => showAllCategories(json.categories))
-}
+    fetch("https://openapi.programming-hero.com/api/categories").then((res) => res.json()).then((json) => showAllCategories(json.categories));
+};
 
 
-// all categories called
+// category wise tree called
 
 const allCategoryWiseTree = (category) => {
-    fetch(`https://openapi.programming-hero.com/api/category/${category}`).then((res) => res.json()).then((json) => showAllPlant(json.plants))
-}
+    fetch(`https://openapi.programming-hero.com/api/category/${category}`).then((res) => res.json()).then((json) => showAllPlant(json.plants));
+};
+
+
+// plant details called for modal
+
+const plantDetailsForModal = (id) => {
+    fetch(`https://openapi.programming-hero.com/api/plant/${id}`).then((res) => res.json()).then((json) => showAllPlant(json.plants));
+};
 
 
 // function for show all categories button
@@ -106,16 +113,16 @@ const showAllPlant = (plants) => {
         treeCard.innerHTML = `
         <div class="bg-white rounded-[8px] p-1 md:p-3 h-full flex flex-col justify-between">
             <div>
-                <img class="rounded-[8px] bg-black aspect-[3/2] w-full" src="${plant.image}" alt="">
+                <img class="rounded-[8px] bg-black aspect-[16/9] w-full" src="${plant.image}" alt="">
                 <button id="modal-${plant.name}" class="text-[10px] md:text-[12px] font-bold mt-2 hover:cursor-pointer">${plant.name}</button>
                 <p class="text-[8px] md:text-[10px] mt-1.5 line-clamp-2">${plant.description}</p>
             </div>
 
             <div>
-                <div class="flex justify-between items-center text-[8px] md:text-[12px] mt-1.5">
-                    <div class="font-semibold bg-[#DCFCE7] rounded-full py-1 px-2 text-[#15803D]">${plant.category}
+                <div class="flex justify-between items-center mt-1.5">
+                    <div class="font-semibold bg-[#DCFCE7] rounded-full py-1 px-2 text-[#15803D] text-[8px] md:text-[11px]">${plant.category}
                     </div>
-                    <p class="font-bold">৳<span>${plant.price}</span>
+                    <p class="font-bold text-[8px] md:text-[12px]">৳<span>${plant.price}</span>
                     </p>
                 </div>
                 <button id= "plant-${plant.id}" class="text-[8px] md:text-[12px] py-1.5 hover:cursor-pointer font-semibold rounded-full bg-[#15803D] w-full text-white mt-2">Add to Cart
@@ -133,6 +140,14 @@ const showAllPlant = (plants) => {
 
 
         addToCartBtns.addEventListener('click', () => {
+
+            // add to cart confermation
+            addToCartBtns.innerText = '✓ Added Successfully';
+
+            // return to default after 2sec
+            setTimeout(() => {
+                addToCartBtns.innerText = 'Add to Cart';
+            }, 500);
 
             // check if item already exist
             let existingTree = Array.from(addToCartContainer.children).find(tree => {
@@ -189,8 +204,64 @@ const showAllPlant = (plants) => {
 
         plantNameModal.addEventListener('click', () => {
             console.log(`modal clicked: modal-${plant.name}`);
+
+            const modalContainer = document.getElementById("modal-container");
+            modalContainer.innerHTML = `
+            <dialog id="my_modal_2" class="modal">
+            <div class="modal-box w-1/2 max-w-sm md:max-w-lg p-2 md:p-5">
+                <h3 class="text-[11px] md:text-[14px] md:text-lg font-bold">
+                    ${plant.name}
+                </h3>
+                <div>
+                    <img src="${plant.image}" class="mt-1.5 rounded-[8px] aspect-[16/9] w-full>
+                </div>
+                
+                <p class="text-[8px] md:text-[12px] w-fit"> </p>
+                <p class="text-[8px] md:text-[12px] w-fit mt-1.5"><span class="font-bold">Category: </span>${plant.category || '-'}</p>
+                
+                <p class="text-[8px] md:text-[12px] w-fit"><span class="font-bold">Price: </span>৳${plant.price || '-'}</p>
+
+                <p class="text-[8px] md:text-[12px] w-fit mb-5 md:mb-10 mt-1.5"><span class="font-bold">Description: </span>${plant.description || '-'}</p>
+
+            </div>
+            
+            <div class="relative">
+                <form method="dialog" class="modal-backdrop text-black w-fit absolute right-0 bottom-0 z-10">
+                    <button class="border border-[#bebaba] md:border-none py-0.5 md:py-1 px-1 md:px-3 rounded-[4px] md:rounded-[8px] md:btn text-[8px] md:text-[12px]">close</button>
+                </form>
+            </div>
+                
+        </dialog>
+    `;
+
+            const modal = document.getElementById("my_modal_2");
+            modal.showModal();
+
+
         })
     }
 }
 
 allPlants()
+
+
+// for select tree Quantity from plant a tree Today
+
+const treeQuantitySelector = document.getElementById('tree-quantity-selector');
+const numberOfTree = document.getElementById('tree-quantity');
+
+treeQuantitySelector.addEventListener('click', () => {
+    numberOfTree.classList.remove('hidden');
+    numberOfTree.classList.add('block')
+});
+
+numberOfTree.querySelectorAll('a').forEach(option => {
+    option.addEventListener('click', (e) => {
+        e.preventDefault();
+        const value = option.getAttribute('data-value');
+        treeQuantitySelector.innerHTML = `${value} <i class="fa-solid fa-angle-down"></i>`;
+
+        numberOfTree.classList.remove('block');
+        numberOfTree.classList.add('hidden');
+    });
+});

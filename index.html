@@ -51,12 +51,12 @@
 
                 </div>
 
-                <h2 class="text-center w-full md:w-fit md:text-left">Green Earth</h2>
+                <h2 class="text-center w-full md:w-fit md:text-left hover:cursor-pointer">Green Earth</h2>
                 <div class="hidden md:block">
                     <div class="flex gap-4">
-                        <p>About</p>
-                        <p>Gallery</p>
-                        <P>Plant a Tree</P>
+                        <p class="hover:cursor-pointer">About</p>
+                        <p class="hover:cursor-pointer">Gallery</p>
+                        <P class="hover:cursor-pointer">Plant a Tree</P>
                     </div>
                 </div>
                 <button
@@ -93,9 +93,14 @@
                 Choose Your Trees
             </div>
 
+            <!-- modal container -->
+            <div id="modal-container">
+
+            </div>
+
             <div class="flex flex-col md:flex-row gap-5 mt-1 md:mt-5">
                 <!-- left Sidebar (Categories) -->
-                <div class="w-full md:w-1/5 p-2">
+                <div class="w-full md:w-1/5 p-2 h-fit">
                     <h1 class="text-[14px] font-bold text-center md:text-left">Categories</h1>
 
                     <!-- categories container -->
@@ -113,7 +118,7 @@
                 <div class="w-full md:w-4/5 flex">
                     <!-- main content (Cards) -->
                     <div id="card-container"
-                        class="w-3/5 md:w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1 md:gap-4">
+                        class="w-3/5 md:w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1 md:gap-4 h-fit">
 
 
                         <!-- demo card -->
@@ -141,7 +146,7 @@
                     </div>
 
                     <!-- right sidebar (cart section) -->
-                    <div class="w-2/5 md:w-1/4 bg-white rounded-[12px] p-3 space-y-1.5">
+                    <div class="w-2/5 md:w-1/4 bg-white rounded-[12px] p-3 space-y-1.5 h-fit">
                         <h2 class="text-[10px] sm:text-[12px] md:text-[14px] font-bold">Your Cart</h2>
 
                         <!-- cart history container -->
@@ -202,19 +207,22 @@
 
                 <div class="flex flex-col md:flex-row justify-between gap-1 md:gap-8 mt-2 md:mt-5">
                     <!-- card-01 -->
-                    <div class="bg-white rounded-[8px] text-center p-3 md:p-6 w-full">
+                    <div
+                        class="bg-white rounded-[8px] text-center p-3 md:p-6 w-full shadow-lg transition-all duration-300 hover:scale-105 hover:bg-[#f0fdf4]">
                         <h2 class="text-[#15803D] font-semibold text-[22px]">500K+</h2>
                         <p class="text-[12px] text-[#474f5a]">Trees Planted</p>
                     </div>
 
                     <!-- card-02 -->
-                    <div class="bg-white rounded-[8px] text-center p-3 md:p-6 w-full">
+                    <div
+                        class="bg-white rounded-[8px] text-center p-3 md:p-6 w-full shadow-lg transition-all duration-300 hover:scale-105 hover:bg-[#f0fdf4]">
                         <h2 class="text-[#15803D] font-semibold text-[22px]">120+</h2>
                         <p class="text-[12px] text-[#474f5a]">Communities Involved</p>
                     </div>
 
                     <!-- card-03 -->
-                    <div class="bg-white rounded-[8px] text-center p-3 md:p-6 w-full">
+                    <div
+                        class="bg-white rounded-[8px] text-center p-3 md:p-6 w-full shadow-lg transition-all duration-300 hover:scale-105 hover:bg-[#f0fdf4]">
                         <h2 class="text-[#15803D] font-semibold text-[22px]">30+</h2>
                         <p class="text-[12px] text-[#474f5a]">Countries Reached</p>
                     </div>
@@ -234,22 +242,30 @@
                         type="text" name="" id="" placeholder="Your Name">
                     <input class="bg-white p-1.5 md:p-2.5 border-none rounded-[6px] text-[10px] md:text-[16px]"
                         type="email" name="" id="" placeholder="Your Email Address">
-                    <div class="dropdown dropdown-start">
-                        <div tabindex="0" role="button"
-                            class="w-full text-left flex justify-between items-center bg-white p-1.5 md:p-2.5 border-none rounded-[6px] text-[10px] md:text-[16px]">
+                    <div class="relative w-full">
+                        <!-- Button -->
+                        <div id="tree-quantity-selector"
+                            class="w-full text-left flex justify-between items-center bg-white p-2 border-none rounded-md text-sm md:text-base cursor-pointer">
                             Number of Trees
                             <i class="fa-solid fa-angle-down"></i>
                         </div>
-                        <ul tabindex="0"
-                            class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm text-[10px] md:text-[16px]">
-                            <li><a>1 Tree = 5$</a></li>
-                            <li><a>5 Tree = 25$</a></li>
-                            <li><a>15 Tree = 75$</a></li>
+
+                        <!-- Dropdown -->
+                        <ul id="tree-quantity"
+                            class="absolute left-0 top-full mt-1 hidden bg-white rounded-md shadow-md w-full z-20 text-sm md:text-base">
+                            <li><a href="#" data-value="1 Tree = 5$" class="block px-4 py-2 hover:bg-gray-100">1 Tree =
+                                    5$</a></li>
+                            <li><a href="#" data-value="5 Tree = 25$" class="block px-4 py-2 hover:bg-gray-100">5 Tree =
+                                    25$</a></li>
+                            <li><a href="#" data-value="15 Tree = 75$" class="block px-4 py-2 hover:bg-gray-100">15 Tree
+                                    = 75$</a></li>
                         </ul>
                     </div>
+
                     <button
-                        class="btn-sm btn-warning text-[#15803D] font-semibold rounded-full bg-[#FACC15] border-none shadow-none text-[10px] md:text-[16px] py-1 md:py-2">Donate
-                        Now</button>
+                        class="btn-sm btn-warning text-[#15803D] font-semibold rounded-full bg-[#FACC15] border-none shadow-none text-[10px] md:text-[16px] py-1 md:py-2 hover:cursor-pointer">
+                        Donate Now
+                    </button>
                 </div>
             </div>
 
