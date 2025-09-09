@@ -98,7 +98,7 @@
 
             </div>
 
-            <div class="flex flex-col md:flex-row gap-5 mt-1 md:mt-5">
+            <div class="flex flex-col md:flex-row gap-5 mt-1 md:mt-5 justify-between">
                 <!-- left Sidebar (Categories) -->
                 <div class="w-full md:w-1/5 p-2 h-fit">
                     <h1 class="text-[14px] font-bold text-center md:text-left">Categories</h1>
@@ -116,6 +116,12 @@
                 </div>
 
                 <div class="w-full md:w-4/5 flex">
+                    <!-- spinner -->
+                    <section id="spinner" class="flex w-3/5 md:w-3/4 justify-center items-center py-5">
+                        <span class="loading loading-dots loading-xl"></span>
+                    </section>
+
+
                     <!-- main content (Cards) -->
                     <div id="card-container"
                         class="w-3/5 md:w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1 md:gap-4 h-fit">

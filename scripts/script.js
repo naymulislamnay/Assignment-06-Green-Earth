@@ -15,6 +15,7 @@ const allCategories = () => {
 // category wise tree called
 
 const allCategoryWiseTree = (category) => {
+    manageSpinner(true);
     fetch(`https://openapi.programming-hero.com/api/category/${category}`).then((res) => res.json()).then((json) => showAllPlant(json.plants));
 };
 
@@ -24,6 +25,20 @@ const allCategoryWiseTree = (category) => {
 const plantDetailsForModal = (id) => {
     fetch(`https://openapi.programming-hero.com/api/plant/${id}`).then((res) => res.json()).then((json) => showAllPlant(json.plants));
 };
+
+
+// spinner function
+
+const manageSpinner = (status) => {
+    if (status == true) {
+        document.getElementById('spinner').classList.remove('hidden');
+        document.getElementById('card-container').classList.add('hidden');
+    }
+    else {
+        document.getElementById('spinner').classList.add('hidden');
+        document.getElementById('card-container').classList.remove('hidden');
+    }
+}
 
 
 // function for show all categories button
@@ -195,9 +210,8 @@ const showAllPlant = (plants) => {
             }
 
             document.getElementById('total-cost').innerText = totalCost;
-
         })
-
+        manageSpinner(false);
 
         // modal with tree details
         const plantNameModal = document.getElementById(`modal-${plant.name}`);
